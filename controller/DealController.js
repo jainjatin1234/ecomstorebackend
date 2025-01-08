@@ -1,4 +1,4 @@
-const Product = require("../models/product");
+const Deal = require("../models/deal");
 const cloudinary = require("cloudinary").v2;
 //cloudinary setup
 cloudinary.config({
@@ -7,9 +7,9 @@ cloudinary.config({
   api_secret: "UhpbWnq98zfU0iTzbNY7m7wwMFk",
 });
 
-class ProductController{
+class DealController{
 
-  static insertproduct = async (req, res) => {
+  static insertdeal = async (req, res) => {
     try {
       //upload image
       const file = req.files.image;
@@ -17,7 +17,7 @@ class ProductController{
         folder: "ProductIMages",
       });
 
-      const result = new Product({
+      const result = new Deal({
         name: req.body.name,
         title:req.body.title,
         image: {
@@ -26,7 +26,8 @@ class ProductController{
         },
         price: req.body.price,
         dprice:req.body.dprice,
-        stock: req.body.stock,
+        sold: req.body.sold,
+        available:req.body.available
       });
       await result.save();
       console.log(result);
@@ -43,9 +44,9 @@ class ProductController{
 
 
 
-      static getproducts = async (req, res) => {
+      static getdeals = async (req, res) => {
         try {
-          const data = await Product.find();
+          const data = await Deal.find();
           res.status(200).json({
             success: true,
             data,
@@ -66,5 +67,5 @@ class ProductController{
 
 
 
-module.exports = ProductController;
+module.exports = DealController;
   
