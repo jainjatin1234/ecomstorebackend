@@ -56,6 +56,18 @@ class ProductController{
       };
 
 
+ static getproductdetails = async (req, res) => {
+    try {
+      const data = await Product.findById(req.params.id);
+      res.status(200).json({
+        success: true,
+        data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
 
       
     }

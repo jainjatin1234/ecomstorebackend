@@ -11,5 +11,8 @@ router.post('/insertdeal',DealController.insertdeal )
 router.get('/getdeals',DealController.getdeals)
 
 
+router.get('/getproductdetails/:id',ProductController.getproductdetails)
+
+
 
 module.exports = router 
